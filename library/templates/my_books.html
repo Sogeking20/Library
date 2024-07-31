@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Мои книги</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Дата получения</th>
+                <th>Дней на руках</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for borrowed_book in borrowed_books %}
+            <tr>
+                <td>{{ borrowed_book.book.title }}</td>
+                <td>{{ borrowed_book.borrowed_at }}</td>
+                <td>{{ borrowed_book.days_on_hand }}</td>
+                <td>
+                    <a href="{% url 'return_book' borrowed_book.id %}" class="btn btn-danger">Вернуть</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

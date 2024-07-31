@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Список должников</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Имя пользователя</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Адрес</th>
+                <th>Название книги</th>
+                <th>Дата получения</th>
+                <th>Дней на руках</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for borrowed_book in debtors %}
+            <tr>
+                <td>{{ borrowed_book.user.username }}</td>
+                <td>{{ borrowed_book.user.first_name }}</td>
+                <td>{{ borrowed_book.user.last_name }}</td>
+                <td>{{ borrowed_book.user.address }}</td>
+                <td>{{ borrowed_book.book.title }}</td>
+                <td>{{ borrowed_book.borrowed_at }}</td>
+                <td>{{ borrowed_book.days_on_hand }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
